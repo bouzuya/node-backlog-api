@@ -1,0 +1,26 @@
+{
+  "name": "backlog-api",
+  "version": "0.0.0",
+  "description": "Backlog API wrapper for Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bouzuya/node-backlog-api.git"
+  },
+  "author": "bouzuya",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/bouzuya/node-backlog-api/issues"
+  },
+  "homepage": "https://github.com/bouzuya/node-backlog-api",
+  "dependencies": {
+    "xmlrpc": "~1.1.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.15.1",
+    "expect.js": "~0.2.0"
+  }
+}
