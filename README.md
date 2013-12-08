@@ -17,4 +17,10 @@ Example
     backlog.getProjects(function(err, projects) {
       console.log(projects);
     });
+    backlog.findIssue({
+      projectId: 1,
+      statusId: [1, 2, 3],
+    }, function(err, issues) {
+      console.log(issues);
+    });
 

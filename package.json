@@ -1,6 +1,6 @@
 {
   "name": "backlog-api",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Backlog API wrapper for Node.js",
   "main": "index.js",
   "scripts": {
