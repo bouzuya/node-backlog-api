@@ -24,3 +24,45 @@ Example
       console.log(issues);
     });
 
+Todo
+------------------------------------------------------------------------------
+
+- createIssue
+- updateIssue
+- switchStatus
+- addComment
+- addIssueType
+- updateIssueType
+- deleteIssueType
+- addVersion
+- updateVersion
+- deleteVersion
+- addComponent
+- updateComponent
+- deleteComponent
+- getTimeline
+- getProjectSummaries
+- getUser
+- getUserIcon
+- getActivityTypes
+- getStatuses
+- getResolutions
+- getPriorities
+- getCustomFields
+- getChildIssues
+- admin.getUsers
+- admin.getUser
+- admin.updateUser
+- admin.deleteUser
+- admin.getProjects
+- admin.addProject
+- admin.updateProject
+- admin.deleteProject
+- admin.getProjectUsers
+- admin.addProjectUser
+- admin.updateProjectUsers
+- admin.deleteProjectUser
+- admin.addCustomField
+- admin.updateCustomField
+- admin.deleteCustomField
+
