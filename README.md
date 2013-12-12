@@ -3,26 +3,63 @@ backlog-api
 
 [Backlog API](http://backlog.jp/api/) wrapper for Node.js
 
-Installation
-------------------------------------------------------------------------------
-
-    $ npm install backlog-api
-
-Example
-------------------------------------------------------------------------------
-
     var backlogApi = require('backlog-api');
     
     var backlog = backlogApi('space', 'user', 'pass');
-    backlog.getProjects(function(err, projects) {
-      console.log(projects);
-    });
+    
     backlog.findIssue({
       projectId: 1,
       statusId: [1, 2, 3],
     }, function(err, issues) {
       console.log(issues);
     });
+
+
+Installation
+------------------------------------------------------------------------------
+
+    $ npm install backlog-api
+
+
+Example
+------------------------------------------------------------------------------
+
+    // show 'BAPI' project, 'bouzuya' user, 'imcomplete' issues.
+    var backlogApi = require('backlog-api');
+    
+    // set env
+    // process.env.BACKLOG_SPACE_ID
+    // process.env.BACKLOG_USERNAME
+    // process.env.BACKLOG_PASSWORD
+    var backlog = backlogApi();
+    
+    // get project id 
+    backlog.getProjects(function(err, projects) {
+      if (err) throw err;
+      var projectId = projects.filter(function(p) {
+        return p.key === 'BAPI';
+      })[0].id;
+      
+      // get user id
+      backlog.getUsers({
+        projectId: projectId
+      }, function(err, users) {
+        if (err) throw err;
+        var userId = users.filter(function(u) {
+          return u.name === 'bouzuya'
+        })[0].id;
+        
+        // get issues
+        backlog.findIssue({
+          projectId: projectId,
+          assignerId: userId,
+          statusId: [1, 2, 3]
+        }, function(err, issues) {
+          console.log(issues);
+        });
+      });
+    });
+
 
 Todo
 ------------------------------------------------------------------------------
@@ -40,7 +77,6 @@ Todo
 - addComponent
 - updateComponent
 - deleteComponent
-- getTimeline
 - getProjectSummaries
 - getUser
 - getUserIcon
