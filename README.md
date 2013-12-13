@@ -77,8 +77,6 @@ Todo
 - addComponent
 - updateComponent
 - deleteComponent
-- getProjectSummaries
-- getUser
 - getUserIcon
 - getActivityTypes
 - getStatuses
