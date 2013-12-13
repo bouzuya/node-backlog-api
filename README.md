@@ -60,43 +60,63 @@ Example
       });
     });
 
-
-Todo
+Supported
 ------------------------------------------------------------------------------
 
-- createIssue
-- updateIssue
-- switchStatus
-- addComment
-- addIssueType
-- updateIssueType
-- deleteIssueType
-- addVersion
-- updateVersion
-- deleteVersion
-- addComponent
-- updateComponent
-- deleteComponent
-- getUserIcon
-- getActivityTypes
-- getStatuses
-- getResolutions
-- getPriorities
-- getCustomFields
-- getChildIssues
-- admin.getUsers
-- admin.getUser
-- admin.updateUser
-- admin.deleteUser
-- admin.getProjects
-- admin.addProject
-- admin.updateProject
-- admin.deleteProject
-- admin.getProjectUsers
-- admin.addProjectUser
-- admin.updateProjectUsers
-- admin.deleteProjectUser
-- admin.addCustomField
-- admin.updateCustomField
-- admin.deleteCustomField
+- backlog.getProjects
+- backlog.getProject (projectId)
+- backlog.getProject (projectKey)
+- backlog.getComponents
+- backlog.getVersions
+- backlog.getUsers
+- backlog.getIssue (issueId)
+- backlog.getIssueTypes
+- backlog.getComments
+- backlog.countIssue
+- backlog.findIssue
+- backlog.getTimeline
+- backlog.getProjectSummary
+- backlog.getProjectSummaries
+- backlog.getUser
+
+
+Not supported yet
+------------------------------------------------------------------------------
+
+- backlog.getIssue (issueKey)
+- backlog.createIssue
+- backlog.updateIssue
+- backlog.switchStatus
+- backlog.addComment
+- backlog.addIssueType
+- backlog.updateIssueType
+- backlog.deleteIssueType
+- backlog.addVersion
+- backlog.updateVersion
+- backlog.deleteVersion
+- backlog.addComponent
+- backlog.updateComponent
+- backlog.deleteComponent
+- backlog.getUserIcon
+- backlog.getActivityTypes
+- backlog.getStatuses
+- backlog.getResolutions
+- backlog.getPriorities
+- backlog.getCustomFields
+- backlog.getChildIssues
+- backlog.admin.getUsers
+- backlog.admin.getUser
+- backlog.admin.updateUser
+- backlog.admin.deleteUser
+- backlog.admin.getProjects
+- backlog.admin.addProject
+- backlog.admin.updateProject
+- backlog.admin.deleteProject
+- backlog.admin.getProjectUsers
+- backlog.admin.addProjectUser
+- backlog.admin.updateProjectUsers
+- backlog.admin.deleteProjectUser
+- backlog.admin.addCustomField
+- backlog.admin.updateCustomField
+- backlog.admin.deleteCustomField
 
