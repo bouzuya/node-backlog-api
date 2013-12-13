@@ -38,6 +38,33 @@ describe('backlog', function() {
       process.env.BACKLOG_PASSWORD = password;
       done();
     });
+
+    it('no argument', function(done) {
+      // backup
+      var spaceId =  process.env.BACKLOG_SPACE_ID;
+      var username = process.env.BACKLOG_USERNAME;
+      var password = process.env.BACKLOG_PASSWORD;
+
+      process.env.BACKLOG_SPACE_ID = '';
+      process.env.BACKLOG_USERNAME = '';
+      process.env.BACKLOG_PASSWORD = '';
+      expect(function() {
+        backlog('space', 'user', null)
+      }).to.throwError();
+      expect(function() {
+        backlog('space', null, 'pass');
+      }).to.throwError();
+      expect(function() {
+        backlog(null, 'user', 'pass');
+      }).to.throwError();
+
+      // restore
+      process.env.BACKLOG_SPACE_ID = spaceId;
+      process.env.BACKLOG_USERNAME = username;
+      process.env.BACKLOG_PASSWORD = password;
+      done();
+    });
+
   });
 
   describe('backlog._parseArguments', function() {

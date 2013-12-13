@@ -34,19 +34,60 @@ describe('backlog.getProject', function() {
     server.close(done);
   });
 
-  it('works', function(done) {
-    client.getProject({
-      projectId: projectId
-    }, function(err, project) {
-      if (err) throw err;
-      expect(project).to.have.property('use_parent_child_issue');
-      expect(project).to.have.property('id');
-      expect(project).to.have.property('text_formatting_rule');
-      expect(project).to.have.property('archived');
-      expect(project).to.have.property('name');
-      expect(project).to.have.property('url');
-      expect(project).to.have.property('key');
-      done();
+  describe('no arguments', function() {
+    it('does\'t work', function(done) {
+      client.getProject(function(err, project) {
+        expect(err).to.be.an(Error);
+        done();
+      });
+    });
+  });
+
+  describe('set projectId', function() {
+    it('works', function(done) {
+      client.getProject({
+        projectId: projectId
+      }, function(err, project) {
+        if (err) throw err;
+        expect(project).to.have.property('use_parent_child_issue');
+        expect(project).to.have.property('id');
+        expect(project).to.have.property('text_formatting_rule');
+        expect(project).to.have.property('archived');
+        expect(project).to.have.property('name');
+        expect(project).to.have.property('url');
+        expect(project).to.have.property('key');
+        done();
+      });
+    });
+  });
+
+  describe('set projectKey', function() {
+    it('works', function(done) {
+      client.getProject({
+        projectKey: 'key'
+      }, function(err, project) {
+        if (err) throw err;
+        expect(project).to.have.property('use_parent_child_issue');
+        expect(project).to.have.property('id');
+        expect(project).to.have.property('text_formatting_rule');
+        expect(project).to.have.property('archived');
+        expect(project).to.have.property('name');
+        expect(project).to.have.property('url');
+        expect(project).to.have.property('key');
+        done();
+      });
+    });
+  });
+
+  describe('set projectId & projectKey', function() {
+    it('does\'t works', function(done) {
+      client.getProject({
+        projectKey: 'key',
+        projectId: projectId 
+      }, function(err, project) {
+        expect(err).to.be.an(Error);
+        done();
+      });
     });
   });
 });
