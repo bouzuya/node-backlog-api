@@ -64,7 +64,7 @@ describe('backlog.getProject', function() {
   describe('set projectKey', function() {
     it('works', function(done) {
       client.getProject({
-        projectKey: 'key'
+        projectKey: 'BAPI'
       }, function(err, project) {
         if (err) throw err;
         expect(project).to.have.property('use_parent_child_issue');
