@@ -70,6 +70,7 @@ Supported
 - backlog.getVersions
 - backlog.getUsers
 - backlog.getIssue (issueId)
+- backlog.getIssue (issueKey)
 - backlog.getIssueTypes
 - backlog.getComments
 - backlog.countIssue
@@ -83,7 +84,6 @@ Supported
 Not supported yet
 ------------------------------------------------------------------------------
 
-- backlog.getIssue (issueKey)
 - backlog.createIssue
 - backlog.updateIssue
 - backlog.switchStatus
