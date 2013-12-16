@@ -1,6 +1,8 @@
 backlog-api
 ==============================================================================
 
+[![Build Status](https://travis-ci.org/bouzuya/node-backlog-api.png?branch=master)](https://travis-ci.org/bouzuya/node-backlog-api)
+
 [Backlog API](http://backlog.jp/api/) wrapper for Node.js
 
     var backlogApi = require('backlog-api');
