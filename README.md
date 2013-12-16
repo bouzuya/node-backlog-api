@@ -60,7 +60,7 @@ Example
       });
     });
 
-Supported
+Supported Methods
 ------------------------------------------------------------------------------
 
 - backlog.getProjects
@@ -79,9 +79,10 @@ Supported
 - backlog.getProjectSummary
 - backlog.getProjectSummaries
 - backlog.getUser
+- backlog.getActivityTypes
 
 
-Not supported yet
+Todo
 ------------------------------------------------------------------------------
 
 - backlog.createIssue
@@ -98,7 +99,6 @@ Not supported yet
 - backlog.updateComponent
 - backlog.deleteComponent
 - backlog.getUserIcon
-- backlog.getActivityTypes
 - backlog.getStatuses
 - backlog.getResolutions
 - backlog.getPriorities
