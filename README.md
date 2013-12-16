@@ -81,6 +81,7 @@ Supported Methods
 - backlog.getUser
 - backlog.getActivityTypes
 - backlog.getStatuses
+- backlog.getResolutions
 
 
 Todo
@@ -100,7 +101,6 @@ Todo
 - backlog.updateComponent
 - backlog.deleteComponent
 - backlog.getUserIcon
-- backlog.getResolutions
 - backlog.getPriorities
 - backlog.getCustomFields
 - backlog.getChildIssues
