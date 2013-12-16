@@ -1,3 +1,7 @@
 language: node_js
 node_js:
   - "0.10"
+env:
+  - BACKLOG_SPACE_ID="space"
+  - BACKLOG_USERNAME="user"
+  - BACKLOG_PASSWORD="pass"
