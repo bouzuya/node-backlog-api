@@ -4,7 +4,8 @@
   "description": "Backlog API wrapper for Node.js",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec "
+    "test": "mocha --reporter spec ",
+    "coveralls": "jscoverage lib && BACKLOG_API_COV=1 mocha -R mocha-lcov-reporter | coveralls"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,13 @@
   },
   "devDependencies": {
     "mocha": "~1.15.1",
-    "expect.js": "~0.2.0"
+    "expect.js": "~0.2.0",
+    "jscoverage": "~0.3.8",
+    "coveralls": "~2.6.0",
+    "mocha-lcov-reporter": "0.0.1"
   },
-  "keywords": ["nulab", "backlog"]
+  "keywords": [
+    "nulab",
+    "backlog"
+  ]
 }
