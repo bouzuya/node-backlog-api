@@ -1,10 +1,20 @@
 backlog-api
 ==============================================================================
 
+[Backlog API](http://backlog.jp/api/) wrapper for Node.js
+
+[![NPM](https://nodei.co/npm/backlog-api.png)](https://nodei.co/npm/backlog-api/)
 [![Build Status](https://travis-ci.org/bouzuya/node-backlog-api.png?branch=master)](https://travis-ci.org/bouzuya/node-backlog-api)
 [![Coverage Status](https://coveralls.io/repos/bouzuya/node-backlog-api/badge.png?branch=master)](https://coveralls.io/r/bouzuya/node-backlog-api?branch=master)
 
-[Backlog API](http://backlog.jp/api/) wrapper for Node.js
+
+Installation
+------------------------------------------------------------------------------
+
+    $ npm install backlog-api
+
+Usage
+------------------------------------------------------------------------------
 
     var backlogApi = require('backlog-api');
     
@@ -16,13 +26,6 @@ backlog-api
     }, function(err, issues) {
       console.log(issues);
     });
-
-
-Installation
-------------------------------------------------------------------------------
-
-    $ npm install backlog-api
-
 
 Example
 ------------------------------------------------------------------------------
