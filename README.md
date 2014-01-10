@@ -1,9 +1,21 @@
 backlog-api
 ==============================================================================
 
-[![Build Status](https://travis-ci.org/bouzuya/node-backlog-api.png?branch=master)](https://travis-ci.org/bouzuya/node-backlog-api)
-
 [Backlog API](http://backlog.jp/api/) wrapper for Node.js
+
+[![NPM](https://nodei.co/npm/backlog-api.png)](https://nodei.co/npm/backlog-api/)
+
+[![Build Status](https://travis-ci.org/bouzuya/node-backlog-api.png?branch=master)](https://travis-ci.org/bouzuya/node-backlog-api)
+[![Coverage Status](https://coveralls.io/repos/bouzuya/node-backlog-api/badge.png?branch=master)](https://coveralls.io/r/bouzuya/node-backlog-api?branch=master)
+
+
+Installation
+------------------------------------------------------------------------------
+
+    $ npm install backlog-api
+
+Usage
+------------------------------------------------------------------------------
 
     var backlogApi = require('backlog-api');
     
@@ -15,13 +27,6 @@ backlog-api
     }, function(err, issues) {
       console.log(issues);
     });
-
-
-Installation
-------------------------------------------------------------------------------
-
-    $ npm install backlog-api
-
 
 Example
 ------------------------------------------------------------------------------
@@ -77,6 +82,7 @@ Supported Methods
 - backlog.getComments
 - backlog.countIssue
 - backlog.findIssue
+- backlog.createIssue
 - backlog.getTimeline
 - backlog.getProjectSummary
 - backlog.getProjectSummaries
@@ -90,7 +96,6 @@ Supported Methods
 Todo
 ------------------------------------------------------------------------------
 
-- backlog.createIssue
 - backlog.updateIssue
 - backlog.switchStatus
 - backlog.addComment

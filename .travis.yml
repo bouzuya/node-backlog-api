@@ -3,3 +3,5 @@ node_js:
   - "0.10"
 env:
   - BACKLOG_SPACE_ID="s" BACKLOG_USERNAME="u" BACKLOG_PASSWORD="p"
+after_success:
+  - npm run-script coveralls
