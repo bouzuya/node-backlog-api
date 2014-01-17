@@ -29,7 +29,7 @@ describe('backlog.getCustomFields', function() {
 
   describe('type_id=5', function() {
 
-    before(function(done) {
+    beforeEach(function(done) {
       server.on('backlog.getCustomFields', function(err, params, callback) {
         var res = [];
         res.push({
@@ -43,6 +43,7 @@ describe('backlog.getCustomFields', function() {
         });
         callback(null, res);
       });
+      done();
     });
 
     it('works', function(done) {
