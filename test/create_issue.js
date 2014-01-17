@@ -99,7 +99,6 @@ describe('backlog.createIssue', function() {
         // assigner: { id: 3, name: '山田' },
       }, function(err, issue) {
         if (err) return done(err);
-        console.log(issue);
         expect(issue).to.have.property('id');
         expect(issue).to.have.property('key');
         expect(issue).to.have.property('summary');
