@@ -1,4 +1,4 @@
-var expect = require('expect.js');
+var expect = require('chai').use(require('sinon-chai')).expect;
 var backlog = require('../');
 
 describe('backlog', function() {
@@ -50,13 +50,13 @@ describe('backlog', function() {
       process.env.BACKLOG_PASSWORD = '';
       expect(function() {
         backlog('space', 'user', null)
-      }).to.throwError();
+      }).to.throw(Error);
       expect(function() {
         backlog('space', null, 'pass');
-      }).to.throwError();
+      }).to.throw(Error);
       expect(function() {
         backlog(null, 'user', 'pass');
-      }).to.throwError();
+      }).to.throw(Error);
 
       // restore
       process.env.BACKLOG_SPACE_ID = spaceId;
@@ -77,30 +77,30 @@ describe('backlog', function() {
 
     describe('no arguments', function() {
       it('invalid', function(done) {
-        expect(function() { f(); }).to.throwException();
+        expect(function() { f(); }).to.throw(Error);
         done();
       });
     });
 
     describe('1 argument', function() {
       it('valid', function(done) {
-        expect(function() { f(function() {}); }).to.not.throwException();
+        expect(function() { f(function() {}); }).to.not.throw(Error);
         done();
       });
 
       it('invalid', function(done) {
-        expect(function() { f(null);  }).to.throwException();
-        expect(function() { f(1); }).to.throwException();
-        expect(function() { f(''); }).to.throwException();
-        expect(function() { f(false); }).to.throwException();
-        expect(function() { f({}); }).to.throwException();
+        expect(function() { f(null);  }).to.throw(Error);
+        expect(function() { f(1); }).to.throw(Error);
+        expect(function() { f(''); }).to.throw(Error);
+        expect(function() { f(false); }).to.throw(Error);
+        expect(function() { f({}); }).to.throw(Error);
         done();
       });
     });
 
     describe('2 arguments', function() {
       it('valid', function(done) {
-        expect(function() { f({}, function() {}); }).to.not.throwException();
+        expect(function() { f({}, function() {}); }).to.not.throw(Error);
         done();
       });
 
@@ -113,22 +113,22 @@ describe('backlog', function() {
       });
 
       it('invalid', function(done) {
-        expect(function() { f(null, function() {}); }).to.throwException();
-        expect(function() { f(1, function() {}); }).to.throwException();
-        expect(function() { f('', function() {}); }).to.throwException();
-        expect(function() { f(false, function() {}); }).to.throwException();
-        expect(function() { f({}, null); }).to.throwException();
-        expect(function() { f({}, 1); }).to.throwException();
-        expect(function() { f({}, ''); }).to.throwException();
-        expect(function() { f({}, false); }).to.throwException();
+        expect(function() { f(null, function() {}); }).to.throw(Error);
+        expect(function() { f(1, function() {}); }).to.throw(Error);
+        expect(function() { f('', function() {}); }).to.throw(Error);
+        expect(function() { f(false, function() {}); }).to.throw(Error);
+        expect(function() { f({}, null); }).to.throw(Error);
+        expect(function() { f({}, 1); }).to.throw(Error);
+        expect(function() { f({}, ''); }).to.throw(Error);
+        expect(function() { f({}, false); }).to.throw(Error);
         done();
       });
     });
 
     describe('3+ arguments', function() {
       it('invalid', function(done) {
-        expect(function() { f({}, function() {}, 3) }).to.throwException();
-        expect(function() { f({}, function() {}, 3, 4) }).to.throwException();
+        expect(function() { f({}, function() {}, 3) }).to.throw(Error);
+        expect(function() { f({}, function() {}, 3, 4) }).to.throw(Error);
         done();
       });
     });

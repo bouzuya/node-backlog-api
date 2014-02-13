@@ -1,4 +1,4 @@
-var expect = require('expect.js');
+var expect = require('chai').use(require('sinon-chai')).expect;
 var xmlrpc = require('xmlrpc');
 var backlog = require('../');
 
@@ -34,8 +34,8 @@ describe('backlog.getComponents', function() {
       projectId: projectId
     }, function(err, components) {
       if (err) throw err;
-      expect(components).to.be.an(Array);
-      expect(components).to.not.be.empty();
+      expect(components).to.be.an('array');
+      expect(components).to.not.be.empty;
       expect(components[0]).to.have.property('id');
       expect(components[0]).to.have.property('name');
       done();

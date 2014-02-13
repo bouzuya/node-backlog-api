@@ -1,4 +1,4 @@
-var expect = require('expect.js');
+var expect = require('chai').use(require('sinon-chai')).expect;
 var xmlrpc = require('xmlrpc');
 var backlog = require('../');
 

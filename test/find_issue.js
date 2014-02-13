@@ -1,4 +1,4 @@
-var expect = require('expect.js');
+var expect = require('chai').use(require('sinon-chai')).expect;
 var xmlrpc = require('xmlrpc');
 var backlog = require('../');
 
@@ -62,8 +62,8 @@ describe('backlog.findIssue', function() {
       projectId: projectId
     }, function(err, issues) {
       if (err) throw err;
-      expect(issues).to.be.a(Array);
-      expect(issues).to.not.be.empty();
+      expect(issues).to.be.an('array');
+      expect(issues).to.not.be.empty;
       expect(issues[0]).to.have.property('summary');
       expect(issues[0]).to.have.property('status');
       expect(issues[0]).to.have.property('created_user');
@@ -84,7 +84,7 @@ describe('backlog.findIssue', function() {
 
   it('"projectId" is required', function(done) {
     client.findIssue({}, function(err, issues) {
-      expect(err).to.be.an(Error);
+      expect(err).to.be.instanceOf(Error);
       done();
     });
   });

@@ -1,4 +1,4 @@
-var expect = require('expect.js');
+var expect = require('chai').use(require('sinon-chai')).expect;
 var xmlrpc = require('xmlrpc');
 var backlog = require('../');
 
@@ -32,8 +32,8 @@ describe('backlog.getUsers', function() {
   it('works', function(done) {
     client.getUsers({ projectId: projectId }, function(err, users) {
       if (err) throw err;
-      expect(users).to.be.an(Array);
-      expect(users).to.not.be.empty();
+      expect(users).to.be.an('array');
+      expect(users).to.not.be.empty;
       expect(users[0]).to.have.property('id');
       expect(users[0]).to.have.property('name');
       done();

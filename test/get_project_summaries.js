@@ -1,4 +1,4 @@
-var expect = require('expect.js');
+var expect = require('chai').use(require('sinon-chai')).expect;
 var xmlrpc = require('xmlrpc');
 var backlog = require('../');
 
@@ -37,23 +37,23 @@ describe('backlog.getProjectSummaries', function() {
   it('works', function(done) {
     client.getProjectSummaries(function(err, summaries) {
       if (err) return done(err);
-      expect(summaries).to.be.an(Array)
+      expect(summaries).to.be.an('array')
       expect(summaries[0]).to.have.property('id');
       expect(summaries[0]).to.have.property('name');
       expect(summaries[0]).to.have.property('key');
       expect(summaries[0]).to.have.property('url');
       expect(summaries[0]).to.have.property('statuses');
-      expect(summaries[0].statuses).to.be.an(Array);
+      expect(summaries[0].statuses).to.be.an('array');
       expect(summaries[0].statuses[0]).to.have.property('id');
       expect(summaries[0].statuses[0]).to.have.property('name');
       expect(summaries[0].statuses[0]).to.have.property('count');
       expect(summaries[0]).to.have.property('milestones');
-      expect(summaries[0].milestones).to.be.an(Array);
+      expect(summaries[0].milestones).to.be.an('array');
       expect(summaries[0].milestones[0]).to.have.property('id');
       expect(summaries[0].milestones[0]).to.have.property('name');
       expect(summaries[0].milestones[0]).to.have.property('due_date');
       expect(summaries[0].milestones[0]).to.have.property('statuses');
-      expect(summaries[0].milestones[0].statuses).to.be.an(Array);
+      expect(summaries[0].milestones[0].statuses).to.be.an('array');
       expect(summaries[0].milestones[0].statuses[0]).to.have.property('id');
       expect(summaries[0].milestones[0].statuses[0]).to.have.property('name');
       expect(summaries[0].milestones[0].statuses[0]).to.have.property('count');

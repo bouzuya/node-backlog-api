@@ -1,4 +1,4 @@
-var expect = require('expect.js');
+var expect = require('chai').use(require('sinon-chai')).expect;
 var xmlrpc = require('xmlrpc');
 var backlog = require('../');
 
@@ -51,7 +51,7 @@ describe('backlog.getIssue', function() {
   describe('no arguments', function() {
     it('does\'t work', function(done) {
       client.getIssue(function(err, issue) {
-        expect(err).to.be.an(Error);
+        expect(err).to.be.instanceOf(Error);
         done();
       });
     });
@@ -87,7 +87,7 @@ describe('backlog.getIssue', function() {
         issueKey: 'key',
         issueId: issueId 
       }, function(err, issue) {
-        expect(err).to.be.an(Error);
+        expect(err).to.be.instanceOf(Error);
         done();
       });
     });

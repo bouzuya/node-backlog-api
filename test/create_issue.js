@@ -1,4 +1,4 @@
-var expect = require('expect.js');
+var expect = require('chai').use(require('sinon-chai')).expect;
 var xmlrpc = require('xmlrpc');
 var backlog = require('../');
 
@@ -128,7 +128,7 @@ describe('backlog.createIssue', function() {
   describe('no arguments', function() {
     it('does not work', function(done) {
       client.createIssue(function(err, issue) {
-        expect(err).to.be.ok();
+        expect(err).to.be.ok;
         done();
       });
     });
@@ -141,7 +141,7 @@ describe('backlog.createIssue', function() {
         summary: 'トップページのデザイン決定',
         issueType: '要望'
       }, function(err, issue) {
-        expect(err).to.not.be.ok();
+        expect(err).to.not.be.ok;
         done();
       });
     });
@@ -154,7 +154,7 @@ describe('backlog.createIssue', function() {
         summary: 'トップページのデザイン決定',
         issueTypeId: 1073928378
       }, function(err, issue) {
-        expect(err).to.not.be.ok();
+        expect(err).to.not.be.ok;
         done();
       });
     });
@@ -168,7 +168,7 @@ describe('backlog.createIssue', function() {
         issueType: '要望',
         issueTypeId: 1073928377
       }, function(err, issue) {
-        expect(err).to.be.ok();
+        expect(err).to.be.ok;
         done();
       });
     });
@@ -181,7 +181,7 @@ describe('backlog.createIssue', function() {
         summary: 'トップページのデザイン決定',
         component: 'カテゴリA'
       }, function(err, issue) {
-        expect(err).to.not.be.ok();
+        expect(err).to.not.be.ok;
         done();
       });
     });
@@ -194,7 +194,7 @@ describe('backlog.createIssue', function() {
         summary: 'トップページのデザイン決定',
         componentId: 1073837877
       }, function(err, issue) {
-        expect(err).to.not.be.ok();
+        expect(err).to.not.be.ok;
         done();
       });
     });
@@ -208,7 +208,7 @@ describe('backlog.createIssue', function() {
         component: 'カテゴリA',
         componentId: 1073837877
       }, function(err, issue) {
-        expect(err).to.be.ok();
+        expect(err).to.be.ok;
         done();
       });
     });

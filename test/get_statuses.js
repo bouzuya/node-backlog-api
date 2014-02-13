@@ -1,4 +1,4 @@
-var expect = require('expect.js');
+var expect = require('chai').use(require('sinon-chai')).expect;
 var xmlrpc = require('xmlrpc');
 var backlog = require('../');
 
@@ -29,8 +29,8 @@ describe('backlog.getStatuses', function() {
   it('works', function(done) {
     client.getStatuses(function(err, statuses) {
       if (err) return done(err);
-      expect(statuses).to.be.an(Array);
-      expect(statuses).to.not.be.empty();
+      expect(statuses).to.be.an('array');
+      expect(statuses).to.not.be.empty;
       expect(statuses[0]).to.have.property('id');
       expect(statuses[0]).to.have.property('name');
       done();

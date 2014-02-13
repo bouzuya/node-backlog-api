@@ -1,4 +1,4 @@
-var expect = require('expect.js');
+var expect = require('chai').use(require('sinon-chai')).expect;
 var xmlrpc = require('xmlrpc');
 var backlog = require('../');
 
@@ -57,7 +57,7 @@ describe('backlog.countIssue', function() {
     client.countIssue({ projectId: projectId }, function(err, count) {
       if (err) throw err;
       expect(count).to.be.a('number');
-      expect(count).to.be(94);
+      expect(count).to.equal(94);
       done();
     });
   });
@@ -69,7 +69,7 @@ describe('backlog.countIssue', function() {
     }, function(err, count) {
       if (err) throw err;
       expect(count).to.be.a('number');
-      expect(count).to.be(10);
+      expect(count).to.equal(10);
       done();
     });
   });
@@ -81,7 +81,7 @@ describe('backlog.countIssue', function() {
     }, function(err, count) {
       if (err) throw err;
       expect(count).to.be.a('number');
-      expect(count).to.be(0);
+      expect(count).to.equal(0);
       done();
     });
   });
@@ -93,7 +93,7 @@ describe('backlog.countIssue', function() {
     }, function(err, count) {
       if (err) throw err;
       expect(count).to.be.a('number');
-      expect(count).to.be(0);
+      expect(count).to.equal(0);
       done();
     });
   });
@@ -105,7 +105,7 @@ describe('backlog.countIssue', function() {
     }, function(err, count) {
       if (err) throw err;
       expect(count).to.be.a('number');
-      expect(count).to.be(84);
+      expect(count).to.equal(84);
       done();
     });
   });
@@ -117,7 +117,7 @@ describe('backlog.countIssue', function() {
     }, function(err, count) {
       if (err) throw err;
       expect(count).to.be.a('number');
-      expect(count).to.be(10);
+      expect(count).to.equal(10);
       done();
     });
   });
@@ -128,7 +128,7 @@ describe('backlog.countIssue', function() {
       assignerId: userId
     }, function(err, count) {
       if (err) throw err;
-      expect(count).to.be(2);
+      expect(count).to.equal(2);
       done();
     });
   });

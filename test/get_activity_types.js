@@ -1,4 +1,4 @@
-var expect = require('expect.js');
+var expect = require('chai').use(require('sinon-chai')).expect;
 var xmlrpc = require('xmlrpc');
 var backlog = require('../');
 
@@ -29,8 +29,8 @@ describe('backlog.getActivityTypes', function() {
   it('works', function(done) {
     client.getActivityTypes(function(err, types) {
       if (err) return done(err);
-      expect(types).to.be.an(Array);
-      expect(types).to.not.be.empty();
+      expect(types).to.be.an('array');
+      expect(types).to.not.be.empty;
       expect(types[0]).to.have.property('id');
       expect(types[0]).to.have.property('name');
       done();

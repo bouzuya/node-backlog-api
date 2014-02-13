@@ -1,4 +1,4 @@
-var expect = require('expect.js');
+var expect = require('chai').use(require('sinon-chai')).expect;
 var xmlrpc = require('xmlrpc');
 var backlog = require('../');
 
@@ -44,7 +44,7 @@ describe('backlog.getUser', function() {
   describe('no argument', function() {
     it('"id" is required', function(done) {
       client.getUser(function(err, user) {
-        expect(err).to.be.an(Error);
+        expect(err).to.be.instanceOf(Error);
         done();
       });
     });

@@ -1,4 +1,4 @@
-var expect = require('expect.js');
+var expect = require('chai').use(require('sinon-chai')).expect;
 var xmlrpc = require('xmlrpc');
 var backlog = require('../');
 
@@ -51,7 +51,7 @@ describe('backlog.getCustomFields', function() {
         projectId: projectId
       }, function(err, customFields) {
         expect(err).to.not.be.ok;
-        expect(customFields).to.be.an(Array);
+        expect(customFields).to.be.an('array');
         var field = customFields[0];
         // common property
         expect(field).to.have.property('id');
@@ -66,7 +66,7 @@ describe('backlog.getCustomFields', function() {
 
     it('"projectId" is required', function(done) {
       client.getCustomFields({}, function(err, customFields) {
-        expect(err).to.be.an(Error);
+        expect(err).to.be.instanceOf(Error);
         done();
       });
     });

@@ -1,4 +1,4 @@
-var expect = require('expect.js');
+var expect = require('chai').use(require('sinon-chai')).expect;
 var xmlrpc = require('xmlrpc');
 var backlog = require('../');
 
@@ -42,7 +42,7 @@ describe('backlog.getTimeline', function() {
   it('works', function(done) {
     client.getTimeline(function(err, timeline) {
       if (err) throw err;
-      expect(timeline).to.be.an(Array);
+      expect(timeline).to.be.an('array');
       expect(timeline[0]).to.have.property('type');
       expect(timeline[0].type).to.have.property('id');
       expect(timeline[0].type).to.have.property('name');

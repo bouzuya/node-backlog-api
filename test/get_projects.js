@@ -1,4 +1,4 @@
-var expect = require('expect.js');
+var expect = require('chai').use(require('sinon-chai')).expect;
 var xmlrpc = require('xmlrpc');
 var backlog = require('../');
 
@@ -37,8 +37,8 @@ describe('backlog.getProjects', function() {
   it('1 argument', function(done) {
     client.getProjects(function(err, projects) {
       if (err) throw err;
-      expect(projects).to.be.an(Array);
-      expect(projects).to.not.be.empty();
+      expect(projects).to.be.an('array');
+      expect(projects).to.not.be.empty;
       expect(projects[0]).to.have.property('use_parent_child_issue');
       expect(projects[0]).to.have.property('id');
       expect(projects[0]).to.have.property('text_formatting_rule');
@@ -53,8 +53,8 @@ describe('backlog.getProjects', function() {
   it('2 arguments', function(done) {
     client.getProjects({}, function(err, projects) {
       if (err) throw err;
-      expect(projects).to.be.an(Array);
-      expect(projects).to.not.be.empty();
+      expect(projects).to.be.an('array');
+      expect(projects).to.not.be.empty;
       expect(projects[0]).to.have.property('use_parent_child_issue');
       expect(projects[0]).to.have.property('id');
       expect(projects[0]).to.have.property('text_formatting_rule');
