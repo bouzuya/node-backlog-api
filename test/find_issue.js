@@ -1,91 +1,54 @@
-var expect = require('chai').use(require('sinon-chai')).expect;
-var xmlrpc = require('xmlrpc');
-var backlog = require('../');
+require('./helper');
 
 describe('backlog.findIssue', function() {
-  var server;
-  var client;
-  var projectId;
 
-  before(function(done) {
-    projectId = 1073783536;
-    server = xmlrpc.createServer({ host: 'localhost', port: 3000 });
-    server.on('backlog.findIssue', function(err, params, callback) {
-      var results = [];
-      results.push({
-        summary: 'APIの調べ方を教えてほしい',
-        status: { id: 4, name: '完了' },
-        created_user: { id: 1073826357, name: 'bouzuya' },
-        created_on: '20121215221840',
-        issueType: { id: 1073928378, color: '#ff9200', name: '要望' },
-        resolution: { id: 0, name: '対応済み' },
-        url: 'https://bouzuya.backlog.jp/view/BAPI-2',
-        id: 1075256778,
-        description: 'APIの調べ方が分からないから、教えてほしい。\r\nそもそも、APIとか公開されているの？',
-        priority: { id: 3, name: '中' },
-        updated_on: '20121215225644',
-        due_date: '20121215',
-        assigner: { id: 1073826357, name: 'bouzuya' },
-        key: 'BAPI-2' });
-      results.push({
-        summary: 'Backlogにログインしてください',
-        status: { id: 4, name: '完了' },
-        created_user: { id: 1073826357, name: 'bouzuya' },
-        created_on: '20121215221144',
-        issueType: { id: 1073928377, color: '#7ea800', name: 'タスク' },
-        resolution: { id: 0, name: '対応済み' },
-        url: 'https://bouzuya.backlog.jp/view/BAPI-1',
-        id: 1075256773,
-        description: 'Backlogを導入しました。\r\n\r\nログインできたメンバーからコメントしていただいてよろしいでしょうか？',
-        priority: { id: 3, name: '中' },
-        due_date: '20121215',
-        updated_on: '20121215221429',
-        key: 'BAPI-1' });
-        callback(null, results);
-        });
-      client = backlog();
-      client._client = function() {
-        return xmlrpc.createClient({
-          url: 'http://localhost:3000/XML-RPC'
-        });
-      };
-      done();
-  });
-
-  after(function(done) {
-    server.close(done);
-  });
-
+  var method = 'backlog.findIssue';
 
   it('works', function(done) {
-    client.findIssue({
-      projectId: projectId
-    }, function(err, issues) {
-      if (err) throw err;
-      expect(issues).to.be.an('array');
-      expect(issues).to.not.be.empty;
-      expect(issues[0]).to.have.property('summary');
-      expect(issues[0]).to.have.property('status');
-      expect(issues[0]).to.have.property('created_user');
-      expect(issues[0]).to.have.property('created_on');
-      expect(issues[0]).to.have.property('issueType');
-      // expect(issues[0]).to.have.property('resolution');
-      expect(issues[0]).to.have.property('url');
-      expect(issues[0]).to.have.property('id');
-      expect(issues[0]).to.have.property('description');
-      expect(issues[0]).to.have.property('priority');
-      expect(issues[0]).to.have.property('due_date');
-      expect(issues[0]).to.have.property('updated_on');
-      expect(issues[0]).to.have.property('assigner');
-      expect(issues[0]).to.have.property('key');
+    var result = [];
+    result.push({
+      id: 73,
+      key: 'BLOGWEBSITE-213',
+      summary: 'トップページのデザイン決定',
+      description: 'トップページのデザイン決定します',
+      url: 'https://demo.backlog.jp/BLGWEBSITE-213',
+      due_date: '20090821',
+      start_date: '20090801',
+      estimated_hours: '3.5',
+      actual_hours: '5.5',
+      issueType: { id: 5, name: 'タスク', color: '#990000' },
+      priority: { id: 3, name: '中' },
+      resolution: { id: 0, name: '対応済み' },
+      status: { id: 2, name: '処理中' },
+      components: { id: 1967, name: 'プロモーション' },
+      versions: { id: 732, name: 'デザイン案作成', date: '20090910' },
+      milestones: { id: 733, name: 'サイトオープン', date: '20091010' },
+      created_user: { id: 2, name: 'やまもと' },
+      assigner: { id: 3, name: '山田' },
+      created_on: '20090731151859',
+      updated_on: '20090731151859'
+    });
+
+    var spy = this.sinon.spy(function(e, p, cb) { cb(null, result); });
+    server.once(method, spy);
+
+    var params = { projectId: 5 };
+    client.findIssue(params, function(err, issues) {
+      expect(spy).to.have.been.calledOnce;
+      expect(spy.firstCall.args[0]).to.be.null;
+      expect(spy.firstCall.args[1]).to.eql([ params ]);
+      expect(err).to.be.null;
+      expect(issues).to.eql(result);
       done();
     });
   });
 
-  it('"projectId" is required', function(done) {
-    client.findIssue({}, function(err, issues) {
-      expect(err).to.be.instanceOf(Error);
-      done();
+  describe('"projectId" is required', function() {
+    it('works', function(done) {
+      client.findIssue({}, function(err, issues) {
+        expect(err).to.be.instanceOf(Error);
+        done();
+      });
     });
   });
 });

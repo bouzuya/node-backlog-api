@@ -1,13 +1,8 @@
-var expect = require('chai').use(require('sinon-chai')).expect;
+require('./helper');
+
 var backlog = require('../');
 
 describe('backlog', function() {
-  var client;
-
-  before(function(done) {
-    client = backlog();
-    done();
-  });
 
   describe('backlog()', function() {
     it('by arguments spaceId/username/password', function(done) {
@@ -76,8 +71,8 @@ describe('backlog', function() {
     });
 
     describe('no arguments', function() {
-      it('invalid', function(done) {
-        expect(function() { f(); }).to.throw(Error);
+      it('valid', function(done) {
+        expect(function() { f(); }).to.not.throw(Error);
         done();
       });
     });
@@ -85,6 +80,7 @@ describe('backlog', function() {
     describe('1 argument', function() {
       it('valid', function(done) {
         expect(function() { f(function() {}); }).to.not.throw(Error);
+        expect(function() { f({}); }).to.not.throw(Error);
         done();
       });
 
@@ -93,7 +89,6 @@ describe('backlog', function() {
         expect(function() { f(1); }).to.throw(Error);
         expect(function() { f(''); }).to.throw(Error);
         expect(function() { f(false); }).to.throw(Error);
-        expect(function() { f({}); }).to.throw(Error);
         done();
       });
     });
@@ -133,4 +128,153 @@ describe('backlog', function() {
       });
     });
   });
+
+  describe('backlog._validateParameters', function() {
+    var f;
+
+    before(function(done) {
+      f = client._validateParameters;
+      done();
+    });
+
+    describe('no option 1', function() {
+
+      var api = {
+        params: {
+          param1: {}
+        }
+      };
+
+      describe('pass 1', function() {
+        it('return null', function(done) {
+          var input = { param1: 1 };
+          expect(f(api, input)).to.be.null;
+          done();
+        });
+      });
+
+      describe('pass unknown', function() {
+        it('return Error', function(done) {
+          var input = { unknown: 1 };
+          expect(f(api, input)).to.be.instanceOf(Error);
+          done();
+        });
+      });
+
+    });
+
+    describe('required 1', function() {
+
+      var api = {
+        params: {
+          param1: { required: true }
+        }
+      };
+
+      describe('pass', function() {
+        it('return null', function(done) {
+          var input = { param1: 1 };
+          expect(f(api, input)).to.be.null;
+          done();
+        });
+      });
+
+      describe('not pass', function() {
+        it('return Error', function(done) {
+          var input = {};
+          expect(f(api, input)).to.be.instanceOf(Error);
+          done();
+        });
+      });
+
+    });
+
+    describe('1 or 2', function() {
+
+      var api = {
+        params: {
+          param1: { or: 'param2' },
+          param2: { or: 'param1' }
+        }
+      };
+
+      describe('pass 1 and 2', function() {
+        it('return Error', function(done) {
+          var input = { param1: 1, param2: 2 };
+          expect(f(api, input)).to.be.instanceOf(Error);
+          done();
+        });
+      });
+
+      describe('pass 1', function() {
+        it('return null', function(done) {
+          var input = { param1: 1 };
+          expect(f(api, input)).to.be.null;
+          done();
+        });
+      });
+
+      describe('pass 2', function() {
+        it('return null', function(done) {
+          var input = { param2: 2 };
+          expect(f(api, input)).to.be.null;
+          done();
+        });
+      });
+
+      describe('not pass', function() {
+        it('return null', function(done) {
+          var input = {};
+          expect(f(api, input)).to.be.null;
+          done();
+        });
+      });
+
+    });
+
+    describe('required 1 or 2', function() {
+
+      var api = {
+        params: {
+          param1: { or: 'param2', required: true },
+          param2: { or: 'param1', required: true }
+        }
+      };
+
+      describe('pass 1 and 2', function() {
+        it('return Error', function(done) {
+          var input = { param1: 1, param2: 2 };
+          expect(f(api, input)).to.be.instanceOf(Error);
+          done();
+        });
+      });
+
+      describe('pass 1', function() {
+        it('return null', function(done) {
+          var input = { param1: 1 };
+          expect(f(api, input)).to.be.null;
+          done();
+        });
+      });
+
+      describe('pass 2', function() {
+        it('return null', function(done) {
+          var input = { param2: 2 };
+          expect(f(api, input)).to.be.null;
+          done();
+        });
+      });
+
+      describe('not pass', function() {
+        it('return Error', function(done) {
+          var input = {};
+          expect(f(api, input)).to.be.instanceOf(Error);
+          done();
+        });
+      });
+
+    });
+
+  });
+
 });
