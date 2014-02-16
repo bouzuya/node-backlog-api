@@ -83,6 +83,7 @@ Supported Methods
 - backlog.countIssue
 - backlog.findIssue
 - backlog.createIssue
+- backlog.updateIssue
 - backlog.getTimeline
 - backlog.getProjectSummary
 - backlog.getProjectSummaries
@@ -97,7 +98,6 @@ Supported Methods
 Todo
 ------------------------------------------------------------------------------
 
-- backlog.updateIssue
 - backlog.switchStatus
 - backlog.addComment
 - backlog.addIssueType

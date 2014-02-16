@@ -6,13 +6,8 @@ var backlogApi = require('../');
 // $ export BACKLOG_PASSWORD='backlog password'
 
 var backlog = backlogApi();
-
-backlog.getProjects().then(function(projects) {
-  projects.forEach(function(project) {
-    var format = '[%s] %s %s';
-    var s = util.format(format, project.key, project.name, project.url);
-    console.log(s);
-  });
+backlog.updateIssue({ key: 'BAPI-142', summary: 'new-sumary' }).then(function(issue) {
+  console.log(issue);
 }).catch(function(err) {
   console.error(err);
 });
