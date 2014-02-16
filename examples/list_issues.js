@@ -7,10 +7,10 @@ var backlogApi = require('../');
 
 var backlog = backlogApi();
 backlog.getProject({ projectKey: 'BAPI' }).then(function(project) {
-  backlog.findIssue({ projectId: project.id }).then(function(issues) {
+  backlog.findIssue({ projectId: project.id, statusId: [1, 2, 3] }).then(function(issues) {
     issues.forEach(function(issue) {
-      var format = '[%s] %s %s';
-      var s = util.format(format, issue.key, issue.summary, issue.url);
+      var format = '[%s] %s %s (%s)';
+      var s = util.format(format, issue.key, issue.summary, issue.url, issue.status.name);
       console.log(s);
     });
   });
