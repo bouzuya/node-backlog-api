@@ -1,39 +1,24 @@
-var expect = require('expect.js');
-var xmlrpc = require('xmlrpc');
-var backlog = require('../');
+require('./helper');
 
 describe('backlog.getActivityTypes', function() {
-  var server;
-  var client;
 
-  before(function(done) {
-    server = xmlrpc.createServer({ host: 'localhost', port: 3000 });
-    server.on('backlog.getActivityTypes', function(err, params, callback) {
-      var results = [];
-      results.push({ id: 1, name: '課題' });
-      callback(null, results);
-    });
-    client = backlog();
-    client._client = function() {
-      return xmlrpc.createClient({
-        url: 'http://localhost:3000/XML-RPC'
-      });
-    };
-    done();
-  });
-
-  after(function(done) {
-    server.close(done);
-  });
+  var method = 'backlog.getActivityTypes';
 
   it('works', function(done) {
+    var result = [];
+    result.push({ id: 1, name: '課題' });
+
+    var spy = this.sinon.spy(function(e, p, cb) { cb(null, result); });
+    server.once(method, spy);
+
     client.getActivityTypes(function(err, types) {
-      if (err) return done(err);
-      expect(types).to.be.an(Array);
-      expect(types).to.not.be.empty();
-      expect(types[0]).to.have.property('id');
-      expect(types[0]).to.have.property('name');
+      expect(spy).to.have.been.calledOnce;
+      expect(spy.firstCall.args[0]).to.be.null;
+      expect(spy.firstCall.args[1]).to.be.empty;
+      expect(err).to.be.null;
+      expect(types).to.eql(result);
       done();
     });
   });
+
 });

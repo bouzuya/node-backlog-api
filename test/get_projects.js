@@ -1,68 +1,149 @@
-var expect = require('expect.js');
-var xmlrpc = require('xmlrpc');
-var backlog = require('../');
+require('./helper');
 
 describe('backlog.getProjects', function() {
-  var server;
-  var client;
 
-  before(function(done) {
-    server = xmlrpc.createServer({ host: 'localhost', port: 3000 });
-    server.on('backlog.getProjects', function(err, params, callback) {
-      var results = [];
-      results.push({
+  var method = 'backlog.getProjects';
+
+  describe('server has no error', function() {
+
+    var result;
+
+    beforeEach(function() {
+      result = [];
+      result.push({
+        id: 2,
+        name: 'Webサイト構築',
+        key: 'BLGWEBSITE',
+        url: 'https://demo.backlog.jp/BLGWEBSITE',
         use_parent_child_issue: false,
-        id: 1073783536,
         text_formatting_rule: 'backlog',
-        archived: false,
-        name: 'Backlog API',
-        url: 'https://bouzuya.backlog.jp/projects/BAPI',
-        key: 'BAPI'
+        archived: false
       });
-      callback(null, results);
     });
-    client = backlog();
-    client._client = function() {
-      return xmlrpc.createClient({
-        url: 'http://localhost:3000/XML-RPC'
+
+    describe('call with [callback]', function() {
+      it('works', function(done) {
+        var spy = this.sinon.spy(function(e, p, cb) { cb(null, result); });
+        server.once(method, spy);
+
+        client.getProjects(function(err, projects) {
+          expect(spy).to.have.been.calledOnce;
+          expect(spy.firstCall.args[0]).to.be.null;
+          expect(spy.firstCall.args[1]).to.be.empty;
+          expect(err).to.be.null;
+          expect(projects).to.eql(result);
+          done();
+        });
       });
-    };
-    done();
-  });
+    });
 
-  after(function(done) {
-    server.close(done);
-  });
+    describe('call with [options, callback]', function() {
+      it('works', function(done) {
+        var spy = this.sinon.spy(function(e, p, cb) { cb(null, result); });
+        server.once(method, spy);
 
-  it('1 argument', function(done) {
-    client.getProjects(function(err, projects) {
-      if (err) throw err;
-      expect(projects).to.be.an(Array);
-      expect(projects).to.not.be.empty();
-      expect(projects[0]).to.have.property('use_parent_child_issue');
-      expect(projects[0]).to.have.property('id');
-      expect(projects[0]).to.have.property('text_formatting_rule');
-      expect(projects[0]).to.have.property('archived');
-      expect(projects[0]).to.have.property('name');
-      expect(projects[0]).to.have.property('url');
-      expect(projects[0]).to.have.property('key');
-      done();
+        client.getProjects({}, function(err, projects) {
+          expect(spy).to.have.been.calledOnce;
+          expect(spy.firstCall.args[0]).to.be.null;
+          expect(spy.firstCall.args[1]).to.be.empty;
+          expect(err).to.be.null;
+          expect(projects).to.eql(result);
+          done();
+        });
+      });
+    });
+
+    describe('call with [] (use promise)', function() {
+      it('works', function(done) {
+        var spy = this.sinon.spy(function(e, p, cb) { cb(null, result); });
+        server.once(method, spy);
+
+        client.getProjects().then(function(projects) {
+          expect(spy).to.have.been.calledOnce;
+          done();
+        });
+      });
+    });
+
+    describe('call with [options] (use promise)', function() {
+      it('works', function(done) {
+        var spy = this.sinon.spy(function(e, p, cb) { cb(null, result); });
+        server.once(method, spy);
+
+        client.getProjects({}).then(function(projects) {
+          expect(spy).to.have.been.calledOnce;
+          expect(spy.firstCall.args[0]).to.be.null;
+          expect(spy.firstCall.args[1]).to.be.empty;
+          expect(projects).to.eql(result);
+          done();
+        });
+      });
     });
   });
 
-  it('2 arguments', function(done) {
-    client.getProjects({}, function(err, projects) {
-      if (err) throw err;
-      expect(projects).to.be.an(Array);
-      expect(projects).to.not.be.empty();
-      expect(projects[0]).to.have.property('use_parent_child_issue');
-      expect(projects[0]).to.have.property('id');
-      expect(projects[0]).to.have.property('text_formatting_rule');
-      expect(projects[0]).to.have.property('archived');
-      expect(projects[0]).to.have.property('name');
-      expect(projects[0]).to.have.property('url');
-      expect(projects[0]).to.have.property('key');
-      done();
+  describe('server has error', function() {
+
+    var err;
+
+    beforeEach(function() {
+      err = new Error();
+    });
+
+    describe('call with [callback]', function() {
+      it('works', function(done) {
+        var spy = this.sinon.spy(function(e, p, cb) { cb(err); });
+        server.once(method, spy);
+
+        client.getProjects(function(err, projects) {
+          expect(spy).to.have.been.calledOnce;
+          expect(spy.firstCall.args[0]).to.be.null;
+          expect(spy.firstCall.args[1]).to.be.empty;
+          expect(err).to.be.ok;
+          expect(projects).to.not.be.ok;
+          done();
+        });
+      });
+    });
+
+    describe('call with [options, callback]', function() {
+      it('works', function(done) {
+        var spy = this.sinon.spy(function(e, p, cb) { cb(err); });
+        server.once(method, spy);
+
+        client.getProjects({}, function(err, projects) {
+          expect(spy).to.have.been.calledOnce;
+          expect(spy.firstCall.args[0]).to.be.null;
+          expect(spy.firstCall.args[1]).to.be.empty;
+          expect(err).to.be.ok;
+          expect(projects).to.not.be.ok;
+          done();
+        });
+      });
+    });
+
+    describe('call with [] (use promise)', function() {
+      it('works', function(done) {
+        var spy = this.sinon.spy(function(e, p, cb) { cb(err); });
+        server.once(method, spy);
+
+        client.getProjects().catch(function(err) {
+          expect(err).to.be.ok;
+          done();
+        });
+      });
+    });
+
+    describe('call with [options] (use promise)', function() {
+      it('works', function(done) {
+        var spy = this.sinon.spy(function(e, p, cb) { cb(err); });
+        server.once(method, spy);
+
+        client.getProjects({}).catch(function(err) {
+          expect(err).to.be.ok;
+          done();
+        });
+      });
     });
   });
+
 });

@@ -83,19 +83,6 @@ Supported Methods
 - backlog.countIssue
 - backlog.findIssue
 - backlog.createIssue
-- backlog.getTimeline
-- backlog.getProjectSummary
-- backlog.getProjectSummaries
-- backlog.getUser
-- backlog.getActivityTypes
-- backlog.getStatuses
-- backlog.getResolutions
-- backlog.getPriorities
-
-
-Todo
-------------------------------------------------------------------------------
-
 - backlog.updateIssue
 - backlog.switchStatus
 - backlog.addComment
@@ -108,8 +95,21 @@ Todo
 - backlog.addComponent
 - backlog.updateComponent
 - backlog.deleteComponent
+- backlog.getTimeline
+- backlog.getProjectSummary
+- backlog.getProjectSummaries
+- backlog.getUser
 - backlog.getUserIcon
+- backlog.getActivityTypes
+- backlog.getStatuses
+- backlog.getResolutions
+- backlog.getPriorities
 - backlog.getCustomFields
+
+
+Todo
+------------------------------------------------------------------------------
+
 - backlog.getChildIssues
 - backlog.admin.getUsers
 - backlog.admin.getUser

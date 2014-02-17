@@ -1,136 +1,62 @@
-var expect = require('expect.js');
-var xmlrpc = require('xmlrpc');
-var backlog = require('../');
+require('./helper');
 
 describe('backlog.countIssue', function() {
-  var server;
-  var client;
-  var projectId;
-  var userId;
 
-  before(function(done) {
-    projectId = 1073783536;
-    userId = 1073826358;
-    server = xmlrpc.createServer({ host: 'localhost', port: 3000 });
-    server.on('backlog.countIssue', function(err, params, callback) {
-      if (params[0].assignerId === userId) {
-        callback(null, 2);
-        return ;
-      }
-      switch (params[0].statusId) {
-        case 1:
-          callback(null, 10);
-          break;
-        case 2:
-          callback(null, 0);
-          break;
-        case 3:
-          callback(null, 0);
-          break;
-        case 4:
-          callback(null, 84);
-          break;
-        default:
-          if (params[0].statusId instanceof Array) {
-            callback(null, 10);
-            break;
-          } else {
-            callback(null, 94);
-            break;
-          }
-      }
-    });
-    client = backlog();
-    client._client = function() {
-      return xmlrpc.createClient({
-        url: 'http://localhost:3000/XML-RPC'
+  var method = 'backlog.countIssue';
+
+  describe('', function() {
+    it('works', function(done) {
+      var result = 64;
+
+      var spy = this.sinon.spy(function(e, p, cb) { cb(null, result); });
+      server.once(method, spy);
+
+      var params = { projectId: 5 };
+      client.countIssue(params, function(err, count) {
+        expect(spy).to.have.been.calledOnce;
+        expect(spy.firstCall.args[0]).to.be.null;
+        expect(spy.firstCall.args[1]).to.eql([ params ]);
+        expect(err).to.be.null;
+        expect(count).to.equal(result);
+        done();
       });
-    };
-    done();
-  });
-
-  after(function(done) {
-    server.close(done);
-  });
-
-  it('backlog.countIssue = 94', function(done) {
-    client.countIssue({ projectId: projectId }, function(err, count) {
-      if (err) throw err;
-      expect(count).to.be.a('number');
-      expect(count).to.be(94);
-      done();
     });
   });
 
-  it('backlog.countIssue status 1 未対応 = 10', function(done) {
-    client.countIssue({
-      projectId: projectId,
-      statusId: 1
-    }, function(err, count) {
-      if (err) throw err;
-      expect(count).to.be.a('number');
-      expect(count).to.be(10);
-      done();
+  describe('"projectId" missing', function() {
+    describe('use callback', function() {
+      it('throw Error', function(done) {
+        var result = 64;
+
+        var spy = this.sinon.spy(function(e, p, cb) { cb(null, result); });
+        server.once(method, spy);
+
+        var params = {};
+        client.countIssue(params, function(err) {
+          expect(spy).to.have.not.been.called;
+          expect(err).to.be.an.instanceOf(Error);
+          done();
+        });
+      });
     });
+
+    describe('use promise', function() {
+      it('throw Error', function(done) {
+        var result = 64;
+
+        var spy = this.sinon.spy(function(e, p, cb) { cb(null, result); });
+        server.once(method, spy);
+
+        var params = {};
+        client.countIssue(params).catch(function(err) {
+          expect(spy).to.have.not.been.called;
+          expect(err).to.be.an.instanceOf(Error);
+          done();
+        });
+      });
+    });
+
   });
 
-  it('backlog.countIssue status 2 処理中 = 0', function(done) {
-    client.countIssue({
-      projectId: projectId,
-      statusId: 2
-    }, function(err, count) {
-      if (err) throw err;
-      expect(count).to.be.a('number');
-      expect(count).to.be(0);
-      done();
-    });
-  });
-
-  it('backlog.countIssue status 3 処理済み = 0', function(done) {
-    client.countIssue({
-      projectId: projectId,
-      statusId: 3
-    }, function(err, count) {
-      if (err) throw err;
-      expect(count).to.be.a('number');
-      expect(count).to.be(0);
-      done();
-    });
-  });
-
-  it('backlog.countIssue status 4 完了 = 84', function(done) {
-    client.countIssue({
-      projectId: projectId,
-      statusId: 4
-    }, function(err, count) {
-      if (err) throw err;
-      expect(count).to.be.a('number');
-      expect(count).to.be(84);
-      done();
-    });
-  });
-
-  it('backlog.countIssue status 1,2,3 完了以外 = 10', function(done) {
-    client.countIssue({
-      projectId: projectId,
-      statusId: [1, 2, 3]
-    }, function(err, count) {
-      if (err) throw err;
-      expect(count).to.be.a('number');
-      expect(count).to.be(10);
-      done();
-    });
-  });
-
-  it('backlog.countIssue assignerId', function(done) {
-    client.countIssue({
-      projectId: projectId,
-      assignerId: userId
-    }, function(err, count) {
-      if (err) throw err;
-      expect(count).to.be(2);
-      done();
-    });
-  });
 });
 

@@ -1,10 +1,10 @@
 {
   "name": "backlog-api",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "Backlog API wrapper for Node.js",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec ",
+    "test": "mocha --reporter spec --ui bdd",
     "coveralls": "jscoverage lib && BACKLOG_API_COV=1 mocha -R mocha-lcov-reporter | coveralls"
   },
   "repository": {
@@ -18,14 +18,17 @@
   },
   "homepage": "https://github.com/bouzuya/node-backlog-api",
   "dependencies": {
+    "q": "~1.0.0",
     "xmlrpc": "~1.1.1"
   },
   "devDependencies": {
+    "chai": "~1.9.0",
     "coveralls": "~2.6.0",
-    "expect.js": "~0.2.0",
     "jscoverage": "~0.3.8",
-    "mocha": "~1.15.1",
-    "mocha-lcov-reporter": "0.0.1"
+    "mocha-lcov-reporter": "0.0.1",
+    "sinon": "~1.8.1",
+    "sinon-chai": "~2.5.0",
+    "mocha": "~1.17.1"
   },
   "keywords": [
     "nulab",
