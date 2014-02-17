@@ -99,6 +99,7 @@ Supported Methods
 - backlog.getProjectSummary
 - backlog.getProjectSummaries
 - backlog.getUser
+- backlog.getUserIcon
 - backlog.getActivityTypes
 - backlog.getStatuses
 - backlog.getResolutions
@@ -109,7 +110,6 @@ Supported Methods
 Todo
 ------------------------------------------------------------------------------
 
-- backlog.getUserIcon
 - backlog.getChildIssues
 - backlog.admin.getUsers
 - backlog.admin.getUser
