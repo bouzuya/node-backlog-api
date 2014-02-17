@@ -93,6 +93,7 @@ Supported Methods
 - backlog.updateVersion
 - backlog.deleteVersion
 - backlog.addComponent
+- backlog.deleteComponent
 - backlog.getTimeline
 - backlog.getProjectSummary
 - backlog.getProjectSummaries
@@ -108,7 +109,6 @@ Todo
 ------------------------------------------------------------------------------
 
 - backlog.updateComponent
-- backlog.deleteComponent
 - backlog.getUserIcon
 - backlog.getChildIssues
 - backlog.admin.getUsers
