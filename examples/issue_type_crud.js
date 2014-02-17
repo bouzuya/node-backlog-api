@@ -18,9 +18,7 @@ backlog.getProject({ projectKey: projectKey })
   // READ
   return backlog.getIssueTypes({ projectId: projectId });
 })
-.then(function(issueTypes) {
-  console.log(issueTypes);
-})
+.then(function(issueTypes) { console.log(issueTypes); })
 .then(function() {
   // CREATE
   return backlog.addIssueType({
