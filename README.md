@@ -90,6 +90,7 @@ Supported Methods
 - backlog.updateIssueType
 - backlog.deleteIssueType
 - backlog.addVersion
+- backlog.deleteVersion
 - backlog.getTimeline
 - backlog.getProjectSummary
 - backlog.getProjectSummaries
@@ -105,7 +106,6 @@ Todo
 ------------------------------------------------------------------------------
 
 - backlog.updateVersion
-- backlog.deleteVersion
 - backlog.addComponent
 - backlog.updateComponent
 - backlog.deleteComponent
