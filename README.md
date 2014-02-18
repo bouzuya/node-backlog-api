@@ -107,6 +107,7 @@ Supported Methods
 - backlog.getCustomFields
 - backlog.admin.getUsers
 - backlog.admin.addUser
+- backlog.admin.deleteUser
 
 
 Todo
@@ -114,7 +115,6 @@ Todo
 
 - backlog.getChildIssues
 - backlog.admin.updateUser
-- backlog.admin.deleteUser
 - backlog.admin.getProjects
 - backlog.admin.addProject
 - backlog.admin.updateProject
