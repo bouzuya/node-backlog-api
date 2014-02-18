@@ -113,13 +113,13 @@ Supported Methods
 - backlog.admin.addProject
 - backlog.admin.updateProject
 - backlog.admin.deleteProject
+- backlog.admin.getProjectUsers
 
 
 Todo
 ------------------------------------------------------------------------------
 
 - backlog.getChildIssues
-- backlog.admin.getProjectUsers
 - backlog.admin.addProjectUser
 - backlog.admin.updateProjectUsers
 - backlog.admin.deleteProjectUser
