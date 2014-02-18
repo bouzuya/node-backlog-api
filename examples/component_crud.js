@@ -28,7 +28,7 @@ backlog.getProject({ projectKey: projectKey })
 })
 .then(function(component) {
   componentId = component.id;
-  console.log('added: ' + util.format(component));
+  console.log('added: ' + util.inspect(component));
 })
 .then(function() { return backlog.getComponents({ projectId: projectId }); })
 .then(function(components) { console.log(components); })
@@ -40,7 +40,7 @@ backlog.getProject({ projectKey: projectKey })
   });
 })
 .then(function(component) {
-  console.log('updated: ' + util.format(component));
+  console.log('updated: ' + util.inspect(component));
 })
 .then(function() { return backlog.getComponents({ projectId: projectId }); })
 .then(function(components) { console.log(components); })
@@ -49,7 +49,7 @@ backlog.getProject({ projectKey: projectKey })
   return backlog.deleteComponent({ id: componentId });
 })
 .then(function(component) {
-  console.log('deleted: ' + util.format(component));
+  console.log('deleted: ' + util.inspect(component));
 })
 .then(function() { return backlog.getComponents({ projectId: projectId }); })
 .then(function(components) { console.log(components); })

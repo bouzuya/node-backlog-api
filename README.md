@@ -105,14 +105,8 @@ Supported Methods
 - backlog.getResolutions
 - backlog.getPriorities
 - backlog.getCustomFields
-
-
-Todo
-------------------------------------------------------------------------------
-
-- backlog.getChildIssues
 - backlog.admin.getUsers
-- backlog.admin.getUser
+- backlog.admin.addUser
 - backlog.admin.updateUser
 - backlog.admin.deleteUser
 - backlog.admin.getProjects
@@ -123,6 +117,12 @@ Todo
 - backlog.admin.addProjectUser
 - backlog.admin.updateProjectUsers
 - backlog.admin.deleteProjectUser
+
+
+Todo
+------------------------------------------------------------------------------
+
+- backlog.getChildIssues
 - backlog.admin.addCustomField
 - backlog.admin.updateCustomField
 - backlog.admin.deleteCustomField

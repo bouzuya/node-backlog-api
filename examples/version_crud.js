@@ -28,7 +28,7 @@ backlog.getProject({ projectKey: projectKey })
 })
 .then(function(version) {
   versionId = version.id;
-  console.log('added: ' + util.format(version));
+  console.log('added: ' + util.inspect(version));
 })
 .then(function() { return backlog.getVersions({ projectId: projectId }); })
 .then(function(versions) { console.log(versions); })
@@ -40,7 +40,7 @@ backlog.getProject({ projectKey: projectKey })
   });
 })
 .then(function(version) {
-  console.log('updated: ' + util.format(version));
+  console.log('updated: ' + util.inspect(version));
 })
 .then(function() { return backlog.getVersions({ projectId: projectId }); })
 .then(function(versions) { console.log(versions); })
@@ -49,7 +49,7 @@ backlog.getProject({ projectKey: projectKey })
   return backlog.deleteVersion({ id: versionId });
 })
 .then(function(version) {
-  console.log('deleted: ' + util.format(version));
+  console.log('deleted: ' + util.inspect(version));
 })
 .then(function() { return backlog.getVersions({ projectId: projectId }); })
 .then(function(versions) { console.log(versions); })
