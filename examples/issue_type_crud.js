@@ -29,7 +29,7 @@ backlog.getProject({ projectKey: projectKey })
 })
 .then(function(issueType) {
   issueTypeId = issueType.id;
-  console.log('added: ' + util.format(issueType));
+  console.log('created: ' + util.inspect(issueType));
 })
 .then(function() { return backlog.getIssueTypes({ projectId: projectId }); })
 .then(function(issueTypes) { console.log(issueTypes); })
@@ -42,7 +42,7 @@ backlog.getProject({ projectKey: projectKey })
   });
 })
 .then(function(issueType) {
-  console.log('updated: ' + util.format(issueType));
+  console.log('updated: ' + util.inspect(issueType));
 })
 .then(function() { return backlog.getIssueTypes({ projectId: projectId }); })
 .then(function(issueTypes) { console.log(issueTypes); })
@@ -53,7 +53,7 @@ backlog.getProject({ projectKey: projectKey })
   });
 })
 .then(function(issueType) {
-  console.log('deleted: ' + util.format(issueType));
+  console.log('deleted: ' + util.inspect(issueType));
 })
 .then(function() { return backlog.getIssueTypes({ projectId: projectId }); })
 .then(function(issueTypes) { console.log(issueTypes); })
