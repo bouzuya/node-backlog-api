@@ -105,13 +105,13 @@ Supported Methods
 - backlog.getResolutions
 - backlog.getPriorities
 - backlog.getCustomFields
+- backlog.admin.getUsers
 
 
 Todo
 ------------------------------------------------------------------------------
 
 - backlog.getChildIssues
-- backlog.admin.getUsers
 - backlog.admin.getUser
 - backlog.admin.updateUser
 - backlog.admin.deleteUser
