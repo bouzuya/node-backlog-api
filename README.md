@@ -106,13 +106,13 @@ Supported Methods
 - backlog.getPriorities
 - backlog.getCustomFields
 - backlog.admin.getUsers
+- backlog.admin.addUser
 
 
 Todo
 ------------------------------------------------------------------------------
 
 - backlog.getChildIssues
-- backlog.admin.getUser
 - backlog.admin.updateUser
 - backlog.admin.deleteUser
 - backlog.admin.getProjects
