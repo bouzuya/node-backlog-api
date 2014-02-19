@@ -105,6 +105,7 @@ Supported Methods
 - backlog.getResolutions
 - backlog.getPriorities
 - backlog.getCustomFields
+- backlog.getChildIssues
 - backlog.admin.getUsers
 - backlog.admin.addUser
 - backlog.admin.updateUser
@@ -117,13 +118,23 @@ Supported Methods
 - backlog.admin.addProjectUser
 - backlog.admin.updateProjectUsers
 - backlog.admin.deleteProjectUser
+- backlog.admin.addCustomField
+- backlog.admin.updateCustomField
+- backlog.admin.deleteCustomField
 
 
 Todo
 ------------------------------------------------------------------------------
 
-- backlog.getChildIssues
-- backlog.admin.addCustomField
-- backlog.admin.updateCustomField
-- backlog.admin.deleteCustomField
+### 1.0.x
+
+- all method support
+
+### 1.1.x
+
+- parameter type validation
+
+### 2.x
+
+- new interface 
 
