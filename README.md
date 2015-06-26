@@ -1,7 +1,7 @@
 backlog-api
 ==============================================================================
 
-[Backlog API](http://backlog.jp/api/) wrapper for Node.js
+[Backlog XML-RPC API](http://www.backlog.jp/developer/api/xml-rpc) wrapper for Node.js
 
 [![NPM](https://nodei.co/npm/backlog-api.png)](https://nodei.co/npm/backlog-api/)
 
