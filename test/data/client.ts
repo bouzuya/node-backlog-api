@@ -5,9 +5,11 @@ import { BacklogClient, newClient } from '../../src/data/client';
 const category = '/data/client ';
 const tests: Test[] = [
   test(category + 'newClient', () => {
-    const apiKey = 'foo';
-    const client: BacklogClient = newClient({ apiKey });
+    const apiKey = 'apiKey1';
+    const spaceKey = 'spaceKey1';
+    const client: BacklogClient = newClient({ apiKey, spaceKey });
     assert(client._apiKey === apiKey); // internal api
+    assert(client._spaceKey === spaceKey); // internal api
   })
 ];
 
