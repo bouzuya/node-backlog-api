@@ -1,6 +1,6 @@
 import { Test, test } from 'beater';
 import * as assert from 'power-assert';
-import { fetch } from '../src/fetch';
+import { fetch } from '../../src/_/fetch';
 
 const category = '/fetch ';
 const tests: Test[] = [
