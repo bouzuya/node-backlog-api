@@ -6,19 +6,6 @@
   "bugs": {
     "url": "https://github.com/bouzuya/node-backlog-api/issues"
   },
-  "dependencies": {
-    "q": "~1.0.0",
-    "xmlrpc": "~1.2.0"
-  },
-  "devDependencies": {
-    "chai": "~1.9.0",
-    "coveralls": "~2.10.0",
-    "jscoverage": "~0.3.8",
-    "mocha": "~1.18.2",
-    "mocha-lcov-reporter": "0.0.1",
-    "sinon": "~1.9.0",
-    "sinon-chai": "~2.5.0"
-  },
   "homepage": "https://github.com/bouzuya/node-backlog-api",
   "keywords": [
     "backlog",
@@ -29,9 +16,5 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/bouzuya/node-backlog-api.git"
-  },
-  "scripts": {
-    "coveralls": "jscoverage lib && BACKLOG_API_COV=1 mocha -R mocha-lcov-reporter | coveralls",
-    "test": "mocha --reporter spec --ui bdd"
   }
 }
