@@ -1,3 +1,8 @@
 import { add } from './add';
+import { BacklogClient, newClient } from './data/client';
 
-export { add };
+export {
+  BacklogClient,
+  add,
+  newClient
+};
