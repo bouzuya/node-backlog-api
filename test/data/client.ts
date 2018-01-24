@@ -1,15 +1,20 @@
 import { Test, test } from 'beater';
 import * as assert from 'power-assert';
-import { BacklogClient, newClient } from '../../src/data/client';
+import {
+  BacklogClient,
+  getApiKey,
+  getSpaceKey,
+  newClient
+} from '../../src/data/client';
 
 const category = '/data/client ';
 const tests: Test[] = [
-  test(category + 'newClient', () => {
+  test(category, () => {
     const apiKey = 'apiKey1';
     const spaceKey = 'spaceKey1';
     const client: BacklogClient = newClient({ apiKey, spaceKey });
-    assert(client._apiKey === apiKey); // internal api
-    assert(client._spaceKey === spaceKey); // internal api
+    assert(getApiKey(client) === apiKey);
+    assert(getSpaceKey(client) === spaceKey);
   })
 ];
 
